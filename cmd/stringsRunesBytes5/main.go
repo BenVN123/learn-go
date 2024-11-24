@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 	var myString = "résumé" // includees non ascii character é
@@ -30,4 +33,13 @@ func main() {
 		catString += myString2[i] // concatenation of strings
 	}
 	fmt.Println(catString)
+
+	// previous version reallocates new string every time a concatenation occurs
+	// use string builder for a faster, more optimized way
+	var strBuilder strings.Builder
+	for i := range myString2 {
+		strBuilder.WriteString(myString2[i])
+	}
+	var newString = strBuilder.String()
+	fmt.Println(newString)
 }
